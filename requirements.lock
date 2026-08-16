@@ -1,0 +1,50 @@
+# 실제로 돌아가는 버전 조합. run_streamlit.bat 이 이 파일을 먼저 쓴다.
+# requirements.txt 만 두면 새 PC 가 그 시점의 최신 버전을 받아 조합이 갈린다.
+#
+# 버전을 올릴 때:
+#   1) requirements.txt 의 범위를 고친다
+#   2) .venv 를 지우고 run_streamlit.bat 을 실행한다
+#   3) 화면이 정상 동작하는지 확인한다
+#   4) pip freeze 결과로 이 파일을 갱신한다
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+altair==6.2.2
+anyio==4.14.2
+attrs==26.1.0
+blinker==1.9.0
+certifi==2026.7.22
+charset-normalizer==3.5.1
+click==8.4.2
+colorama==0.4.6
+et_xmlfile==2.0.0
+h11==0.16.0
+httptools==0.8.0
+idna==3.18
+itsdangerous==2.2.0
+jsonschema-specifications==2025.9.1
+jsonschema==4.26.0
+narwhals==2.24.0
+numpy==2.5.2
+openpyxl==3.1.5
+packaging==26.3
+pandas==3.0.5
+pillow==12.3.0
+protobuf==7.35.1
+pyarrow==24.0.0
+pydeck==0.9.3
+python-dateutil==2.9.0.post0
+python-multipart==0.0.32
+referencing==0.37.0
+requests==2.34.2
+rpds-py==2026.6.3
+six==1.17.0
+starlette==1.3.1
+streamlit==1.61.1
+tenacity==9.1.4
+toml==0.10.2
+typing_extensions==4.16.0
+tzdata==2026.3
+urllib3==2.7.0
+uvicorn==0.52.3
+watchdog==6.0.0
+websockets==16.1.1

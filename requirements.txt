@@ -1,0 +1,5 @@
+# 직접 의존성. 실제로 돌아가는 버전 조합은 requirements.lock 에 잠겨 있다.
+streamlit>=1.30
+requests>=2.31
+pandas>=2.0
+openpyxl>=3.1

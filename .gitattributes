@@ -1,0 +1,16 @@
+# 배치 파일은 반드시 CRLF 여야 한다.
+#
+# LF 로 저장되면 cmd.exe 가 한글이 들어간 줄에서 줄 경계를 잘못 잡는다.
+# 그러면 문장이 토막나서 각 조각을 명령어로 실행하려 들고,
+#   '으로'은(는) 내부 또는 외부 명령... / 'host:8200' is not recognized...
+# 같은 오류가 줄줄이 뜨면서 스크립트가 엉뚱하게 흘러간다.
+# 인코딩과 무관하다(chcp 를 빼도 똑같이 깨진다). 줄바꿈이 원인이다.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# 자동 생성물·문서 첨부는 git 이 손대지 않는다
+*.xlsx binary
+*.png  binary
+*.pdf  binary
+*.ttf  binary

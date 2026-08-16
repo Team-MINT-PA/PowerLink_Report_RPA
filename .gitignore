@@ -1,0 +1,31 @@
+# 로컬 SQLite 는 커밋하지 않는다. 이력은 git 친화적인 JSONL 로만 남긴다.
+data/*
+!data/history.jsonl
+*.db
+*.db-shm
+*.db-wal
+
+# 파이썬
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# 화면에서 내려받은 결과 파일 (docs/ 의 요구사항 문서는 예외)
+파워링크순위*.xlsx
+파워링크순위*.csv
+파워링크리포트*.html
+powerlink_*.html
+
+# 이 프로젝트와 무관한 개인 파일
+대전_커플여행*.csv
+대전_커플여행*.xlsx
+
+# 에디터 / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
