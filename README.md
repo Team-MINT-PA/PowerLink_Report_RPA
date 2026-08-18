@@ -9,27 +9,47 @@
 
 ## 1. 실행
 
-**`run_streamlit.bat`** 을 더블클릭하면 브라우저에서 <http://localhost:8501> 이 열립니다.
+| 운영체제 | 실행 |
+|---|---|
+| **윈도우** | `run_streamlit.bat` 더블클릭 |
+| **macOS / 리눅스** | 터미널에서 `./run_streamlit.sh` |
+
+둘 다 하는 일은 같습니다. 브라우저에서 <http://localhost:8501> 이 열립니다.
+
+맥은 처음 한 번만 실행 권한을 줘야 합니다.
+
+```bash
+cd 프로젝트폴더
+chmod +x run_streamlit.sh
+./run_streamlit.sh
+```
+
+파이썬이 없다고 하면 `xcode-select --install` 로 애플 기본 도구를 깔거나
+`brew install python` 을 쓰세요. 스크립트가 어느 쪽을 깔아야 하는지 알려 줍니다.
 
 처음 실행하면 가상환경과 패키지를 알아서 준비합니다. 이미 되어 있으면 건너뛰므로
-두 번째부터는 바로 뜹니다. 무언가 꼬이면 `.venv` 폴더를 지우고 다시 실행하세요.
+두 번째부터는 2초 안에 뜹니다. 무언가 꼬이면 `.venv` 폴더를 지우고 다시 실행하세요.
 
 ```
 [1/2] 가상환경을 만듭니다. 처음 한 번만 걸립니다...   →  .venv 생성
 [2/2] 패키지를 설치합니다...                        →  requirements.lock 으로 버전 고정
 ```
 
+포트를 바꾸려면 `PORT=8600 ./run_streamlit.sh` 처럼 넘기거나,
+윈도우는 `run_streamlit.bat` 의 `set PORT=8501` 을 고치세요.
+
 수동으로 실행하려면:
 
-```bat
-python -m venv .venv
-.venv\Scripts\python -m pip install -r requirements.lock
-.venv\Scripts\python -m streamlit run streamlit_app.py
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.lock     # 윈도우는 .venv\Scripts\python
+.venv/bin/python -m streamlit run streamlit_app.py
 ```
 
-### 프로젝트 폴더는 짧은 경로에 두세요
+### 프로젝트 폴더는 짧은 경로에 두세요 (윈도우 한정)
 
-streamlit 패키지 안에 **140자짜리 경로**가 들어 있습니다. 프로젝트가 깊은 폴더에 있으면
+streamlit 패키지 안에 **140자짜리 경로**가 들어 있습니다. macOS·리눅스는
+경로 한계가 훨씬 커서 해당 없습니다. 프로젝트가 깊은 폴더에 있으면
 설치 도중 `WinError 206 파일 이름이 너무 깁니다` 로 실패하는데, 이때 **streamlit 만 빠진 채
 나머지가 깔려** 원인을 찾기 어렵습니다.
 
@@ -130,7 +150,8 @@ PC 파워링크는 페이지 구조가 달라 순위가 따로 매겨집니다.
 
 ```
 DdaengJu/
-├─ run_streamlit.bat        실행 배치
+├─ run_streamlit.bat        실행 (윈도우)
+├─ run_streamlit.sh         실행 (macOS·리눅스)
 ├─ streamlit_app.py         화면 (이 파일 하나가 UI 전부)
 ├─ config.json              키워드 31개 · 추적 업체 — 메모장으로 수정 가능
 ├─ requirements.txt         직접 의존성 4개
@@ -160,8 +181,12 @@ nclk(this, 'sct.title', 'nad-a001-01-000000494587285', 13)
 키워드 하나가 약 1초에 끝납니다. 마크업이 바뀌어 `nclk` 가 사라지면 페이지 내 등장
 순서로 순위를 계산하는 안전망이 있습니다.
 
-### 배치 파일은 CRLF 여야 합니다
+### 줄바꿈은 파일 종류마다 반대입니다
 
-LF 로 저장하면 cmd.exe 가 한글이 든 줄에서 줄 경계를 잘못 잡아, 문장 조각을 명령어로
-실행하려 듭니다(`'으로'은(는) 내부 또는 외부 명령...`). `.gitattributes` 가
-`*.bat text eol=crlf` 로 고정해 두었습니다.
+- **`.bat` 는 CRLF.** LF 면 cmd.exe 가 한글이 든 줄에서 줄 경계를 잘못 잡아
+  문장 조각을 명령어로 실행하려 듭니다(`'으로'은(는) 내부 또는 외부 명령...`).
+- **`.sh` 는 LF.** CRLF 면 맥·리눅스 bash 가 줄 끝의 캐리지리턴까지 명령으로 읽어
+  `$'<CR>': command not found` 로 죽습니다.
+
+이 저장소는 윈도우에서 만들어 `autocrlf` 가 켜져 있으므로, 명시하지 않으면 `.sh` 가
+실제로 CRLF 로 변환됩니다. `.gitattributes` 에 양쪽을 고정해 두었습니다.

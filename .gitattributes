@@ -9,6 +9,13 @@
 *.cmd text eol=crlf
 *.ps1 text eol=crlf
 
+# 셸 스크립트는 반대로 반드시 LF 여야 한다.
+# CRLF 로 체크아웃되면 맥·리눅스의 bash 가 줄 끝의 캐리지리턴까지 명령으로 읽어
+#   run_streamlit.sh: line 2: $'<CR>': command not found
+# 처럼 죽는다. 이 저장소는 윈도우에서 만들어 autocrlf 가 켜져 있으므로
+# 명시하지 않으면 실제로 그렇게 변환된다.
+*.sh text eol=lf
+
 # 자동 생성물·문서 첨부는 git 이 손대지 않는다
 *.xlsx binary
 *.png  binary

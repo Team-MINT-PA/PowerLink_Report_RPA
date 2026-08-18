@@ -165,7 +165,7 @@ with tab_run:
         st.dataframe(
             view[["날짜", "키워드", RANK_COL]],
             hide_index=True,
-            use_container_width=True,
+            width="stretch",
             height=min(760, 40 + 35 * len(view)),
         )
         st.caption(
@@ -236,5 +236,5 @@ with tab_hist:
                  "직전 대비": c["ranks"][target_name]["delta"]}
                 for c in data.get("current", []) if target_name in c["ranks"]
             ]),
-            hide_index=True, use_container_width=True,
+            hide_index=True, width="stretch",
         )
